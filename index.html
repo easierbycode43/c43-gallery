@@ -119,8 +119,17 @@
 						break
 					}
 				}
-				document.addEventListener('keydown', onKeydown)
+				document.addEventListener('keydown', onKeydown);
 
+				const TV_MODE   = new URL(window.location.href).searchParams.get('mode') == 'TV';
+
+				// if TV_MODE automatically advance to next picture every 15s
+				if ( TV_MODE ) {
+					setInterval(
+						() => { Gallery.room.$navNext.click() },
+						15000
+					)
+				}
 			});
 		</script>
 	</body>
